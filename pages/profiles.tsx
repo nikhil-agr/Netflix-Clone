@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
@@ -21,14 +22,17 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 const Profiles = () => {
   const router = useRouter();
-  const {data:user} = useCurrentUser();
+  const { data: user } = useCurrentUser();
   return (
     <div className="flex items-center h-full justify-center">
       <div className="flex flex-col items-center">
         <h1 className="text-3xl md:text-6xl text-center">Who is Watching?</h1>
         <div className="flex items-center jsutify-center gap-8 mt-10">
-          <div onClick={() => {router.push("/")}}>
-
+          <div
+            onClick={() => {
+              router.push("/");
+            }}
+          >
             <div className="group flex-row w-44 mx-auto">
               <div
                 className="
@@ -45,7 +49,10 @@ const Profiles = () => {
                 overflow-hidden
                 "
               >
-                <img src="/images/default-red.png" alt="profile" />
+                <img
+                  src="/images/default-red.png"
+                  alt="profile"
+                />
               </div>
 
               <div
@@ -59,7 +66,6 @@ const Profiles = () => {
                 {user?.name}
               </div>
             </div>
-
           </div>
         </div>
       </div>

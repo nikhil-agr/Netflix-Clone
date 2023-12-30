@@ -1,10 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useCallback, useEffect, useState } from "react";
 import { BsChevronDown, BsBell, BsSearch } from "react-icons/bs";
 
 import MobileMenu from "./MobileMenu";
 import NavbarItem from "./NavbarItem";
 import AccountMenu from "./AccountMenu";
-import Image from "next/image";
 
 const TOP_OFFSET = 66;
 
@@ -52,12 +52,10 @@ const Navbar = () => {
         ${ShowBackground ? 'bg-zinc-900/[0.9]' : ''}
         `}
       >
-        <Image
+        <img
           className="h-7 lg:h-10"
           src="/images/logo.png"
           alt="logo"
-          width={100}
-          height={100}
         />
         <div
           className="
@@ -100,11 +98,9 @@ const Navbar = () => {
             className="flex flex-row items-center gap-2 cursor-pointer relative"
           >
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-              <Image
+              <img
                 src="/images/default-red.png"
                 alt="profile"
-                width={100}
-                height={100}
               />
             </div>
             <BsChevronDown

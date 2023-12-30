@@ -40,7 +40,7 @@ const Billbaord = () => {
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <button
             className="
-            bg-white/[.3] 
+            bg-white/[.4]
             rounded-md 
             py-1 md:py-2 
             px-2 md:px-4 
@@ -50,7 +50,7 @@ const Billbaord = () => {
             flex
             flex-row
             items-center
-            hover:bg-opacity-20
+            hover:bg-white/[.60]
             transition
           "
           >
