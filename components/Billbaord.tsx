@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import useBillboard from "@/hooks/useBillboard";
+import PlayButton from "./PlayButton";
 
 const Billbaord = () => {
   const { data } = useBillboard();
+  const [videoUrl, setVideoUrl] = useState(null)
+  useEffect(() => {
+    setVideoUrl(data?.videoUrl)
+  }, [data])
+  
   return (
     <div className="relative h-[56.25vw]">
-      <video poster={data?.thumbnailUrl} className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500" autoPlay muted loop src={data?.videoUrl}></video>
+      {videoUrl && <video poster={data?.thumbnailUrl} className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500" autoPlay muted loop src={data?.videoUrl}></video>}
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
         <p
           className="
@@ -26,6 +32,7 @@ const Billbaord = () => {
           {data?.description}
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
+          <PlayButton movieId={data?.id} />
           <button
             className="
             bg-white/[.4]
@@ -33,7 +40,7 @@ const Billbaord = () => {
             py-1 md:py-2 
             px-2 md:px-4 
             w-auto 
-            text-xs lg:text-l 
+            text-xs lg:text-lg 
             font-semibold
             flex
             flex-row
