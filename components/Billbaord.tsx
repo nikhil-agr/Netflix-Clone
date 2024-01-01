@@ -1,19 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import useBillboard from "@/hooks/useBillboard";
 import PlayButton from "./PlayButton";
+import useInfoModal from "@/hooks/useInfoModal";
 
 const Billbaord = () => {
   const { data } = useBillboard();
-  const [videoUrl, setVideoUrl] = useState(null)
+  const { openModal } = useInfoModal();
+
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id);
+  }, [openModal, data?.id]);
+
+  const [videoUrl, setVideoUrl] = useState(null);
   useEffect(() => {
-    setVideoUrl(data?.videoUrl)
-  }, [data])
-  
+    setVideoUrl(data?.videoUrl);
+  }, [data]);
+
   return (
     <div className="relative h-[56.25vw]">
-      {videoUrl && <video poster={data?.thumbnailUrl} className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500" autoPlay muted loop src={data?.videoUrl}></video>}
+      {videoUrl && (
+        <video
+          poster={data?.thumbnailUrl}
+          className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500"
+          autoPlay
+          muted
+          loop
+          src={data?.videoUrl}
+        ></video>
+      )}
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
         <p
           className="
@@ -34,6 +50,7 @@ const Billbaord = () => {
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />
           <button
+            onClick={handleOpenModal}
             className="
             bg-white/[.4]
             rounded-md 
