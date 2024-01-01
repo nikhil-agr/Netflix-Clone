@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FaPlay } from "react-icons/fa";
 import React from "react";
+import FavoriteButton from "./FavoriteButton";
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -93,6 +94,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             >
               <FaPlay className="text-black" size={20} />
             </div>
+              <FavoriteButton movieId={data?.id} />
           </div>
 
           <p className="text-green-400 font-semibold mt-4">
